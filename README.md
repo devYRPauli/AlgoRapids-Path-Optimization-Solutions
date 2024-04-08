@@ -1,4 +1,4 @@
-# Algorithms-Optimization
+# AlgoRapids: Path Optimization Solutions
 
 ## Project Overview
 This project delves into solving two nuanced river crossing problems using advanced algorithmic techniques. It showcases the design, analysis, and implementation of eight distinct algorithms to optimize the cost and number of jumps required to cross a river, given a set of platforms with associated costs.
