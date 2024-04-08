@@ -16,7 +16,9 @@ This project delves into solving two nuanced river crossing problems using advan
 
 ## Installation
 Clone the repository to your local machine:
+
 git clone https://github.com/YourUsername/RiverCrossingOptimization-Algorithms.git
+
 Ensure you have Python 3.x installed, as the implementations use Python. No external libraries are required.
 
 ## Problem Definition
