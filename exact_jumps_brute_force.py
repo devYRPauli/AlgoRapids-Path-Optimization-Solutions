@@ -1,29 +1,29 @@
-def find_minimum_cost(n, cost, k, m):
+from typing import Tuple, List
+
+
+def find_minimum_cost(n: int, cost: List[int], k: int, m: int) -> Tuple[int, List[int]]:
     """
-    Finds the minimum cost and path to reach the last platform from the first platform
-    given the number of platforms, cost to jump on each platform, maximum number of jumps
-    allowed and maximum distance that can be covered in a single jump.
+    Finds the minimum cost and path using brute force with exact number of jumps.
 
     Args:
-        n (int): Number of platforms
-        cost (List[int]): Cost to jump on each platform
-        k (int): Maximum distance that can be covered in a single jump
-        m (int): Maximum number of jumps allowed
+        n: Number of platforms
+        cost: Cost to jump on each platform
+        k: Maximum distance that can be covered in a single jump
+        m: Exact number of jumps required
 
     Returns:
-        Tuple[int, List[int]]: Minimum cost to reach the last platform and the path to reach there
+        Tuple of (minimum cost, path to reach the last platform)
     """
-    def find_min_cost_from(platform, remaining_jumps):
+    def find_min_cost_from(platform: int, remaining_jumps: int) -> Tuple[int, List[int]]:
         """
-        Recursive function to find the minimum cost and path to reach the last platform
-        from the given platform with the given number of remaining jumps.
+        Recursive function to find the minimum cost and path to reach the last platform.
 
         Args:
-            platform (int): Current platform
-            remaining_jumps (int): Number of remaining jumps
+            platform: Current platform
+            remaining_jumps: Number of remaining jumps
 
         Returns:
-            Tuple[int, List[int]]: Minimum cost to reach the last platform and the path to reach there
+            Tuple of (minimum cost, path to reach the last platform)
         """
         if remaining_jumps == 1:
             if platform + k >= n:
@@ -48,9 +48,22 @@ def find_minimum_cost(n, cost, k, m):
     return min_cost, min_path
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the exact jumps river crossing problem."""
     n, k, m = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0 or m <= 0:
+        print("Error: n, k, and m must be positive integers")
+        return
+    
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     minimum_cost, jump_path = find_minimum_cost(n, cost, k, m)
     print(' '.join(map(str, jump_path)))
 

@@ -1,0 +1,15 @@
+# AlgoRapids: Path Optimization Solutions
+# No external dependencies required
+# Python 3.7+ required
+
+# The algorithms use only Python standard library:
+# - typing (built-in for Python 3.5+)
+# - heapq (built-in)
+# - collections (built-in)
+
+# For development and testing (optional):
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=22.0.0
+# mypy>=0.950
+# pylint>=2.13.0

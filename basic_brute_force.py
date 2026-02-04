@@ -1,4 +1,18 @@
-def min_cost_nk(ind, cost, k):
+from typing import Tuple, List
+
+
+def min_cost_nk(ind: int, cost: List[int], k: int) -> Tuple[int, List[int]]:
+    """
+    Calculate minimum cost to reach index using brute force recursion.
+    
+    Args:
+        ind: Target index to reach
+        cost: List of costs for each platform
+        k: Maximum jump distance allowed
+        
+    Returns:
+        Tuple of (minimum cost, path to reach the index)
+    """
     # Base case: if we are at the first platform, the cost is 0 and the path is [0]
     if ind == 0:
         return 0, [0]
@@ -22,11 +36,24 @@ def min_cost_nk(ind, cost, k):
     return min_cost, min_path
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the river crossing problem."""
     # Read the number of platforms and the maximum jump length
     n, k = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0:
+        print("Error: n and k must be positive integers")
+        return
+    
     # Read the cost for each platform
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     # Append 0 to cost, as jumping to the end incurs no additional cost
     cost.append(0)
     n = len(cost)

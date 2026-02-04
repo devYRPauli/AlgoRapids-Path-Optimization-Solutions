@@ -1,22 +1,19 @@
 import heapq
+from typing import Tuple, List
 
 
-import heapq
-
-def find_minimum_cost(n, cost, k, m):
+def find_minimum_cost(n: int, cost: List[int], k: int, m: int) -> Tuple[float, List[int]]:
     """
-    Finds the minimum cost and path to reach the last platform in a game where the player can jump
-    at most k platforms at a time and can make a total of m jumps. Each platform has a cost associated
-    with it that the player has to pay to land on it.
+    Finds minimum cost and path using DP with min-heap for exact jumps problem.
 
     Args:
-        n (int): The total number of platforms.
-        cost (List[int]): A list of length n containing the cost of landing on each platform.
-        k (int): The maximum number of platforms the player can jump at a time.
-        m (int): The total number of jumps the player can make.
+        n: Total number of platforms
+        cost: List of costs for landing on each platform
+        k: Maximum number of platforms the player can jump at a time
+        m: Exact number of jumps required
 
     Returns:
-        Tuple[int, List[int]]: A tuple containing the minimum cost and the path to reach the last platform.
+        Tuple of (minimum cost, path to reach the last platform)
 
     Example:
         >>> find_minimum_cost(5, [1, 2, 3, 4, 5], 2, 3)
@@ -54,9 +51,22 @@ def find_minimum_cost(n, cost, k, m):
     return min_cost, min_path
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the exact jumps river crossing problem."""
     n, k, m = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0 or m <= 0:
+        print("Error: n, k, and m must be positive integers")
+        return
+    
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     minimum_cost, jump_path = find_minimum_cost(n, cost, k, m)
     print(' '.join(map(str, jump_path)))
 

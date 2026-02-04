@@ -1,27 +1,24 @@
 from collections import deque
-
-
 from typing import List, Tuple
-from collections import deque
 
-def find_minimum_cost(n, cost, k, m):
+
+def find_minimum_cost(n: int, cost: List[int], k: int, m: int) -> Tuple[float, List[int]]:
     """
-    This function finds the minimum cost and path for a given set of costs and constraints.
+    Finds minimum cost and path using DP with monotonic queue for exact jumps problem.
 
     Args:
-    - n (int): The number of elements in the cost list.
-    - cost (List[int]): The list of costs.
-    - k (int): The maximum distance between two elements in the path.
-    - m (int): The number of elements in the path.
+        n: Number of platforms
+        cost: List of costs for each platform
+        k: Maximum jump distance allowed
+        m: Exact number of jumps required
 
     Returns:
-    - Tuple[int, List[int]]: A tuple containing the minimum cost and the path.
+        Tuple of (minimum cost, path to reach the destination)
 
     Example:
-    >>> find_minimum_cost(5, [1, 2, 3, 4, 5], 2, 3)
-    (6, [0, 2, 4])
+        >>> find_minimum_cost(5, [1, 2, 3, 4, 5], 2, 3)
+        (6, [0, 2, 4])
     """
-
     # Initialize memoization table and path table
     memo = [[float('inf')] * (m + 1) for _ in range(n)]
     memo[0][0] = cost[0]
@@ -60,9 +57,22 @@ def find_minimum_cost(n, cost, k, m):
     return min_cost, min_path
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the exact jumps river crossing problem."""
     n, k, m = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0 or m <= 0:
+        print("Error: n, k, and m must be positive integers")
+        return
+    
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     minimum_cost, jump_path = find_minimum_cost(n, cost, k, m)
     print(' '.join(map(str, jump_path)))
 

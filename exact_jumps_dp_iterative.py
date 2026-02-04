@@ -1,17 +1,18 @@
-def find_minimum_cost_bottom_up(n, cost, k, m):
+from typing import Tuple, List
+
+
+def find_minimum_cost_bottom_up(n: int, cost: List[int], k: int, m: int) -> Tuple[float, List[int]]:
     """
-    Finds the minimum cost to reach the last platform from the first platform
-    by jumping from one platform to another. Each jump has a cost associated with it.
+    Finds minimum cost using bottom-up DP for exact jumps problem.
 
     Args:
-    - n (int): the total number of platforms
-    - cost (List[int]): a list of integers representing the cost of jumping from one platform to another
-    - k (int): the maximum number of platforms that can be jumped over in a single jump
-    - m (int): the total number of jumps allowed
+        n: Total number of platforms
+        cost: List of costs for jumping on each platform
+        k: Maximum number of platforms that can be jumped over
+        m: Exact number of jumps required
 
     Returns:
-    - minimum_cost (int): the minimum cost to reach the last platform from the first platform
-    - jump_path (List[int]): a list of integers representing the path of jumps taken to reach the last platform
+        Tuple of (minimum cost, path of jumps taken)
     """
     # initialize the dynamic programming table and path table
     dp = [[float('inf')] * (m + 1) for _ in range(n)]
@@ -42,9 +43,22 @@ def find_minimum_cost_bottom_up(n, cost, k, m):
     return minimum_cost, jump_path
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the exact jumps river crossing problem."""
     n, k, m = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0 or m <= 0:
+        print("Error: n, k, and m must be positive integers")
+        return
+    
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     minimum_cost, jump_path = find_minimum_cost_bottom_up(n, cost, k, m)
     print(' '.join(map(str, jump_path)))
 

@@ -1,4 +1,19 @@
-def min_cost_nk(ind, cost, dp, k):
+from typing import List
+
+
+def min_cost_nk(ind: int, cost: List[int], dp: List[int], k: int) -> int:
+    """
+    Calculate minimum cost to reach index using top-down DP with memoization.
+    
+    Args:
+        ind: Target index to reach
+        cost: List of costs for each platform
+        dp: Memoization array for storing computed results
+        k: Maximum jump distance allowed
+        
+    Returns:
+        Minimum cost to reach the index
+    """
     # Base case: if at the start (index 0), the cost is 0
     if ind == 0:
         return 0
@@ -25,11 +40,24 @@ def min_cost_nk(ind, cost, dp, k):
     return dp[ind]
 
 
-def main():
+def main() -> None:
+    """Main function to read input and solve the river crossing problem."""
     # Read the number of platforms and the maximum jump length
     n, k = map(int, input().split())
+    
+    # Validate input
+    if n <= 0 or k <= 0:
+        print("Error: n and k must be positive integers")
+        return
+    
     # Read the costs for each platform
     cost = list(map(int, input().split()))
+    
+    # Validate cost array length
+    if len(cost) != n:
+        print(f"Error: Expected {n} costs but got {len(cost)}")
+        return
+    
     # Append 0 to cost, as jumping to the end incurs no additional cost
     cost.append(0)
     # Update the number of platforms including the end point
