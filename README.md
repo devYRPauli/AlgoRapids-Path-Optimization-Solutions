@@ -121,7 +121,7 @@ graph LR
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/YashRajPandey/AlgoRapids-Path-Optimization-Solutions.git
+git clone https://github.com/devYRPauli/AlgoRapids-Path-Optimization-Solutions.git
 cd AlgoRapids-Path-Optimization-Solutions
 ```
 
